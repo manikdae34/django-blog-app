@@ -11,6 +11,7 @@ from .models import User
 from django.core.mail import get_connection, EmailMultiAlternatives
 from django.contrib.sites.models import Site
 import os
+from django.http import HttpResponse 
 
 
 class CustomUserAdmin(UserAdmin):
@@ -90,7 +91,8 @@ class PostAdmin(admin.ModelAdmin):
 
         print(send_mass_html_mail(datatuple))
 
-        return render(request, 'blog/mail_template.html', {'post': post, 'content': content, 'extra_2_posts': extra_2_posts})
+        # return render(request, 'blog/mail_template.html', {'post': post, 'content': content, 'extra_2_posts': extra_2_posts})
+        return HttpResponse('mail sent !')
 
 
 admin.site.register(Post, PostAdmin)
