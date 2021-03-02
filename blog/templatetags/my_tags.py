@@ -18,7 +18,7 @@ def latest_3_posts():
 @register.simple_tag
 def get_tags():
     tags = set()
-    for post in Post.objects.all():
+    for post in Post.objects.filter(status=1).order_by('-created_on'):
         post_tags = post.tags
         post_tags = [tags.add(tag.lower()) for tag in post_tags.split()]
         print(tags)

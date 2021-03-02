@@ -26,7 +26,7 @@ class PostList(generic.ListView):
         query = ' '.join(query.split())
 
         if query == None or query == '':
-            object_list = Post.objects.all().order_by('-created_on')
+            object_list = Post.objects.filter(status=1).order_by('-created_on')
         
         else:
             print('query = ', query)
@@ -34,8 +34,10 @@ class PostList(generic.ListView):
             for que in query.split():
 
                 pos_list = Post.objects.filter(
-                    Q(title__icontains=que) | Q(description__icontains=que) | Q(tags__icontains=que)
-                )
+                    Q(title__icontains=que) | Q(description__icontains=que) | Q(tags__icontains=que),
+                    status=1
+                ).order_by('-created_on')
+                
                 object_list.extend(pos_list)
                 print(object_list)
 
@@ -50,7 +52,7 @@ def post_detail(request, slug):
     email_status = request.GET.get('email_status', 0)
     comment_status = request.GET.get('comment_status', 0)
 
-    post = get_object_or_404(Post, slug=slug)
+    post = get_object_or_404(Post, slug=slug, status=1)
     post.n_views += 1
     post.save()
 
