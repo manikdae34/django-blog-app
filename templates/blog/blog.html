@@ -1,0 +1,78 @@
+{% extends 'blog/base.html' %}
+
+{% load static %}
+{% load my_tags %}
+
+{% block main-content %}
+<div class="container">
+      <div class="row">
+        <!-- Latest Posts -->
+        <main class="posts-listing col-lg-8"> 
+          <div class="container">
+            <div class="row">
+
+              <!-- post -->
+              {% for post in object_list %}
+              <div class="post col-xl-6">
+                <div class="post-thumbnail"><a href="/post/{{ post.slug }}"><img src="{{ post.upload.url }}" alt="..." class="img-fluid"></a></div>
+                <div class="post-details">
+                  <div class="post-meta d-flex justify-content-between">
+                    <div class="date meta-last">{{ post.created_on }}</div>
+                    <div class="category">
+                      
+                      {% for tag in post|get_tags_from_post:2 %}
+                      <a href="/blog/?q={{ tag }}">{{ tag }}</a>
+                      {% endfor %}
+                      
+                    </div>
+                  </div><a href="/post/{{ post.slug }}">
+                    <h3 class="h4">{{ post.title }}</h3></a>
+                  <p class="text-muted">{{ post.description }}</p>
+                  <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
+                      <div class="avatar"><img src="{{ post.author.profile_img.url }}" alt="..." class="img-fluid"></div>
+                      <div class="title"><span>{{ post.author.first_name }} {{ post.author.last_name }}</span></div></a>
+                    <div class="date"><i class="icon-clock"></i>{{ post.content | get_read_time }} min
+                    </div>
+                    <div class="comments meta-last"><i class="icon-comment"></i>{{ post | get_no_comments }}
+                    </div>
+                  </footer>
+                </div>
+              </div>
+              {% endfor %}
+
+            </div>
+
+            <!-- Pagination -->
+            {% if is_paginated %}
+
+            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+              <ul class="pagination pagination-template d-flex justify-content-center">
+
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link ">{{ page_obj.previous_page_number }}</a></li>
+                {% endif %}
+	
+	{% if request.GET.page == None %}
+                <li class="page-item"><a href="#" class="page-link active">1</a></li>
+	{% else %}
+                <li class="page-item"><a href="#" class="page-link active">{{ request.GET.page }}</a></li>
+	{% endif %}
+
+                {% if page_obj.has_next %}
+                <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link ">{{ page_obj.next_page_number }}</a></li>
+                <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+                {% endif %}
+
+              </ul>
+            </nav>
+
+            {% endif %}
+
+        </main>
+
+        {% include 'blog/sidebar.html' %}
+
+      </div>
+    </div>
+{% endblock %}

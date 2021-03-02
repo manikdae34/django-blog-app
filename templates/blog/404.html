@@ -1,0 +1,77 @@
+{% extends 'blog/base.html' %}
+
+{% load static %}
+{% load my_tags %}
+
+	
+
+{% block main-content %}
+
+	<!-- 404 block -->
+
+
+	<section class="page_404">
+		<div class="container">
+			<div class="row">	
+			<div class="col-sm-12 ">
+			<div class="col-sm-10 col-sm-offset-1  text-center">
+			<div class="four_zero_four_bg">
+				<h1 class="text-center ">404</h1>
+			
+			
+			</div>
+			
+			<div class="contant_box_404">
+			<h3 class="h2">
+			Look like you're lost
+			</h3>
+			
+			<p>The page you are looking for is not avaible!</p>
+			
+			<a href="/" class="link_404">Go to Home</a>
+		</div>
+			</div>
+			</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+    <!-- Latest Posts -->
+    <section class="latest-posts"> 
+		<div class="container">
+		  <header> 
+			<h2>Checkout other blogs</h2>
+			<p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+		  </header>
+		  <div class="row">
+
+			{% latest_3_posts as latest_posts %}
+
+			{% for post in latest_posts %}
+			<div class="post col-md-4">
+			  <div class="post-thumbnail"><a href="/post/{{ post.slug }}"><img src="{{ post.upload.url }}" alt="..." class="img-fluid"></a></div>
+			  <div class="post-details">
+				<div class="post-meta d-flex justify-content-between">
+				  <div class="date">{{ post.created_on }}</div>
+				  <div class="category">
+
+					{% for tag in post|get_tags_from_post %}  
+					<a href="/blog/?q={{tag}}">{{tag}}</a>
+					{% endfor %}
+
+				</div>
+				</div><a href="/post/{{ post.slug }}">
+				  <h3 class="h4">{{ post.title }}</h3></a>
+				<p class="text-muted">{{ post.description | truncatechars:100 }}</p>
+			  </div>
+			</div>
+			{% endfor %}
+
+		  </div>
+		</div>
+	  </section>
+
+{% endblock %}
