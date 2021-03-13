@@ -1,6 +1,8 @@
-# Blog app using django
+Before running on your system, make sure you add your credentials in secrets.json.
 
-You can checkout the demo **[here](http://djangoblogsxyz.pythonanywhere.com/)**.
+# Blog app using Django
+
+You can check out the demo **[here](http://djangoblogsxyz.pythonanywhere.com/)**.
 
 **Admin panel** [click here](http://djangoblogsxyz.pythonanywhere.com/admin)<br>
 **Username** : test <br>
@@ -17,5 +19,5 @@ You can checkout the demo **[here](http://djangoblogsxyz.pythonanywhere.com/)**.
 * A subscribe feature below every blog post.
 * 3 click mailing system: Mails your selected blog posts to all of your subscribers in just 3 clicks.
 
-To mail your blog posts as newsletter to your subscribers, go to posts page in admin panel, select posts you wanna send, click on actions dropdown , select mail posts.
-If your credentials are correct, then, those selected posts will be sent to all of your subscribers.
+To mail your blog posts as a newsletter to your subscribers, go to the posts page in the admin panel, select posts you wanna send, click on actions dropdown, select mail posts.
+If your credentials provided in the secrets.json are correct, then, those selected posts will be sent to all of your subscribers.
