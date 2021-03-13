@@ -1,8 +1,8 @@
 # Blog app using django
 
-You can checkout the demo **[here](http://djangodailyblog123.pythonanywhere.com/)**.
+You can checkout the demo **[here](http://djangoblogsxyz.pythonanywhere.com/)**.
 
-**Admin panel** [click here](http://djangodailyblog123.pythonanywhere.com/admin)<br>
+**Admin panel** [click here](http://djangoblogsxyz.pythonanywhere.com/admin)<br>
 **Username** : test <br>
 **Password** : test123@ <br>
 
