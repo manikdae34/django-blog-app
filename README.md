@@ -15,7 +15,7 @@ You can check out the demo **[here](http://djangoblogsxyz.pythonanywhere.com/)**
 * It has a built-in text editor (drag and drop image uploads)
 * An algorithm that updates the homepage with the most popular blogs.
 * A comment section below every blog post.
-* Definitely, you can delete comments which you didn't want others to see.
+* You can delete comments which you didn't want others to see.
 * A subscribe feature below every blog post.
 * 3 click mailing system: Mails your selected blog posts to all of your subscribers in just 3 clicks.
 
