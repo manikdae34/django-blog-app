@@ -82,18 +82,21 @@ def comment(request):
     print(comment_email)
     print(comment_body)
 
+    c = Comment.objects.create(name=comment_name, post=post, body=comment_body)
+
     if comment_email is not None:
         print('inside if comment_email condition !')
+        
+        c.email = comment_email
+
         if not Subscribers.objects.filter(email=comment_email).exists():
             print('email does not exist !')
             subscriber = Subscribers.objects.create(email=comment_email)
             subscriber.save()
             print('email saved !')
 
-
-    c = Comment.objects.create(name=comment_name, email=comment_email, post=post, body=comment_body)
     c.save()
-    
+
     next += '?comment_status=posted#tags'
 
     return HttpResponseRedirect(next)
